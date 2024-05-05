@@ -1,1 +1,2 @@
-# LandmassGeneration.github.io
+# Landmass Generation
+## Day 1
