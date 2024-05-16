@@ -15,6 +15,9 @@ public class LandmassGenerator : MonoBehaviour {
         GenerateMap();
     }
 
+    /// <summary>
+    /// Generates a new map based on the settings provided.
+    /// </summary>
     public void GenerateMap() {
         float[,] noiseMap = PerlinNoise.GenerateNoiseMap(settings);
 
@@ -23,6 +26,9 @@ public class LandmassGenerator : MonoBehaviour {
         display.DrawNoiseMap(noiseMap, drawMode, settings);
     }
 
+    /// <summary>
+    /// Validates the settings to make sure they are within the correct range.
+    /// </summary>
     void OnValidate() {
         if(settings.lacunarity < 1) {
             settings.lacunarity = 1;
@@ -66,6 +72,9 @@ public class LandmassGenerator : MonoBehaviour {
     }
 }
 
+/// <summary>
+/// A struct that holds the name and prefab of a nature object.
+/// </summary>
 [System.Serializable]
 public struct NatureObject {
     public string name;
@@ -73,6 +82,9 @@ public struct NatureObject {
     public float minHeight, maxHeight;
 }
 
+/// <summary>
+/// A struct that holds the name, height, and color of a terrain type.
+/// </summary>
 [System.Serializable]
 public struct TerrainType {
     public string name;
@@ -81,6 +93,9 @@ public struct TerrainType {
     public Color color;
 }
 
+/// <summary>
+/// A struct that holds the settings for the terrain generation.
+/// </summary>
 [System.Serializable]
 public class TerrainSettings {
     public int width = 241;

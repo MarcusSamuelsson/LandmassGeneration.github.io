@@ -3,12 +3,18 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 public class PerlinNoise {
+    /// <summary>
+    /// Generates a noise map based on the provided terrain settings.
+    /// </summary>
+    /// <param name="settings">The settings used to affect the noise generation including the FBM</param>
+    /// <returns></returns>
     public static float[,] GenerateNoiseMap(TerrainSettings settings) {
         float[,] noiseMap = new float[settings.width, settings.height];
 
         System.Random prng = new System.Random(settings.seed);
         Vector2[] octaveOffsets = new Vector2[settings.octaves];
 
+        /// Generate the offsets for the octaves
         for(int i = 0; i < settings.octaves; i++) {
             float offsetX = prng.Next(-100000, 100000) + settings.offset.x;
             float offsetY = prng.Next(-100000, 100000) + settings.offset.y;
@@ -22,12 +28,14 @@ public class PerlinNoise {
         float maxNoiseHeight = float.MinValue;
         float minNoiseHeight = float.MaxValue;
         
+        /// Generate the noise map in parallel
         Parallel.For(0, settings.height, y => {
             for(int x = 0; x < settings.width; x++) {
                 float amplitude = 1;
                 float frequency = 1;
                 float noiseHeight = 0;
 
+                /// Generate the noise map for each octave
                 for(int i = 0; i < settings.octaves; i++) {
                     float sampleX = (x - (settings.width/2)) / settings.scale * frequency + octaveOffsets[i].x;
                     float sampleY = (y - (settings.height/2)) / settings.scale * frequency + octaveOffsets[i].y;

@@ -24,6 +24,7 @@ public class MeshGenerator : MonoBehaviour {
 
         int vertexIndex = 0;
 
+        /// Generate the vertices for the mesh
         for(int y = 0; y < height; y += meshSimplificationIncrement) {
             for(int x = 0; x < width; x += meshSimplificationIncrement) {
                 meshData.vertices[vertexIndex] = new Vector3(topLeftX + x, settings.heightCurve.Evaluate(heightMap[x, y]) * settings.heightMultiplier , topLeftZ - y);
@@ -51,12 +52,23 @@ public class MeshData {
 
     private int triangleIndex;
 
+    /// <summary>
+    /// Initializes a new MeshData object with the specified number of vertices per line.
+    /// </summary>
+    /// <param name="verticesPerLine">Gives the vertices per line for the x and y axis</param>
     public MeshData(Vector2Int verticesPerLine) {
         vertices = new Vector3[verticesPerLine.x * verticesPerLine.y];
         uvs = new Vector2[verticesPerLine.x * verticesPerLine.y];
         triangles = new int[(verticesPerLine.x - 1) * (verticesPerLine.y - 1) * 6];
     }
 
+    /// <summary>
+    /// Adds a quad to the mesh data with the specified vertex indices.
+    /// </summary>
+    /// <param name="A">A index to the relevant vertex for the triangle</param>
+    /// <param name="B">A index to the relevant vertex for the triangle</param>
+    /// <param name="C">A index to the relevant vertex for the triangle</param>
+    /// <param name="D">A index to the relevant vertex for the triangle</param>
     public void AddQuad(int A, int B, int C, int D) {
         triangles[triangleIndex] = A;
         triangles[triangleIndex + 1] = B;
@@ -67,6 +79,10 @@ public class MeshData {
         triangleIndex += 6;
     }
 
+    /// <summary>
+    /// Creates a mesh from the mesh data.
+    /// </summary>
+    /// <returns>The new mesh initilized from the set options given through the mesh data</returns>
     public Mesh CreateMesh() {
         Mesh mesh = new Mesh();
         mesh.vertices = vertices;

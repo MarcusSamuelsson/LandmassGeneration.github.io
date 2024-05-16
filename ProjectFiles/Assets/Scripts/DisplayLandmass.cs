@@ -6,6 +6,13 @@ public class DisplayLandmass : MonoBehaviour {
     public Renderer textureRenderer;
     public MeshRenderer plane, terrain;
 
+    /// <summary>
+    /// Draws the noise map based on the provided noise map, draw mode, settings, and mesh object.
+    /// </summary>
+    /// <param name="noiseMap">The noise map generated from the perlin noise and FBM</param>
+    /// <param name="drawMode">An enum that determince how the terrain should be generated</param>
+    /// <param name="settings">The terrain settings used for creating the terrain(Used for generating color and mesh)</param>
+    /// <param name="meshObject">This gives if the mesh should be attached to a specific GameObject in th scene or if it is null it will chose gameobject with this script on it.</param>
     public void DrawNoiseMap(float[,] noiseMap, LandmassGenerator.DrawMode drawMode, TerrainSettings settings, GameObject meshObject = null) {
         int size = noiseMap.GetLength(0);
 
