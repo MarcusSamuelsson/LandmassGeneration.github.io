@@ -21,7 +21,7 @@
     <div class="navbar clear nav-top">
         <div class="row content">
             <!--a href="#"><img class="logo" src="logo.svg"></a-->
-            <a class="right" style="text-decoration: underline;" href="#"><i class="fas fa-book"></i>&nbsp; Report</a>
+            <a class="right" style="text-decoration: underline;" href="./DH2323_Project.pdf"><i class="fas fa-book"></i>&nbsp; Report</a>
             <a class="right" href="mailto:marsamu@kth.se" target="_blank"><i class="fas fa-paper-plane"></i>&nbsp; marsamu@kth.se</a>
         </div>
     </div>
@@ -38,27 +38,54 @@
 
                 <div class="divider left"></div>
 
-                <a class="title" href="#gettingstarted">Day 1: Perlin noise</a>
+                <a class="title" href="#Day1">Day 1: Perlin noise</a>
 
-                <a class="section" href="#installingapp">Perlin noise</a>
-                 <a class="section" href="#openingapp">Generate texture</a>
-
-                <div class="divider left"></div>
-
-                <a class="title" href="#basicfeatures">Day 2: Fractal Brownian Motion</a>
-
-                <a class="section" href="#basicfeatures">Fractal Brownian Motion</a>
-                <a class="section" href="#basicfeatures">Color</a>
+                <a class="section" href="#Perlin">Perlin noise</a>
+                 <a class="section" href="#Texture">Generate texture</a>
+                 <a class="section" href="#Res1">Result</a>
 
                 <div class="divider left"></div>
 
-                <a class="title" href="#advanced">Day 3: Mesh rendering</a>
+                <a class="title" href="#Day2">Day 2: Fractal Brownian Motion</a>
 
-                <a class="section" href="#advanced">Meshes in Unity</a>
-                <a class="section" href="#featureb">Generate from noise map</a>
-                <a class="section" href="#featurec">Result</a>
+                <a class="section" href="#FBM">Fractal Brownian Motion</a>
+                <a class="section" href="#Color">Color</a>
+                <a class="section" href="#Issue1">Issues</a>
+                <a class="section" href="#Res2">Result</a>
+
+                <div class="divider left"></div>
+
+                <a class="title" href="#Day3">Day 3: Mesh rendering</a>
+
+                <a class="section" href="#norm">Normalization</a>
+                <a class="section" href="#mesh">Meshes in Unity</a>
+                <a class="section" href="#genfromnoise">Generate from noise map</a>
+                <a class="section" href="#Res3">Result</a>
             
              <div class="space double"></div>
+
+             <div class="divider left"></div>
+
+            <a class="title" href="#Day4">Day 4: LOD</a>
+
+            <a class="section" href="#LOD">Level of Detail</a>
+
+            <div class="divider left"></div>
+
+            <a class="title" href="#Day5">Day 5-6: Optimization</a>
+
+            <a class="section" href="#par">Parallelization</a>
+            <a class="section" href="#prep">Preparations</a>
+            <a class="section" href="#clean">Cleaning up</a>
+
+            <div class="divider left"></div>
+
+            <a class="title" href="#Day7">Day 7: Finalizing touches</a>
+
+            <a class="section" href="#reshape">Reshapable landmass size</a>
+            <a class="section" href="#Res4">Result</a>
+
+            <div class="space double"></div>
 
             </div>
 
@@ -68,100 +95,201 @@
 
                 <h1 >Introduction</h1>
                 
-                <p>This blog is for my project in the course DH2323 where I am creating a landmass generator.</p> 
+                <p>This blog is for my project in the course DH2323 where I am creating a landmass generator. This blog covers the work done in the days spent on the project. This does not cover everything in detail, for a more detailed explenation of each part click the report link in the top right corner.</p> 
             
+                <p>Some preperations are made throughout the blog which does not end up being involved in the final version, but they are also covered more in the report.</p>
+
                 <h2>Project</h2>
              
                 <p>This project covers the creation of a landmass generator. It is a pseudo-random generator that will create a 3D lanscape that is realistic in it's shape.</p>
 
                 <h2>Technology</h2>
                 
-                <p id="technology"> This project was done in the Unity engine, and is written in the programming lanuage C#.</p>
+                <p id="Day1"> This project was done in the Unity engine, on a Windows computer and is written in the programming lanuage C#.</p>
                  
-        <div class="divider" style="width:24%; margin:30px 0;"></div>
+        <div id="Perlin" class="divider" style="width:24%; margin:30px 0;"></div>
 
                 <h1>Day 1: Perlin noise</h1>
 
-                <h2>Perlin noise</h2>
+                <h2 id="Perlin">Perlin Noise</h2>
                 
-                <p>Perlin noise is a pseudo-random sequence of floating-point numbers generated across a two-dimensional plane. It is a gradient noise, lending itself well to natural phenomena like the complex patterns of a terrain. Unity conveniently incorporates a Perlin noise function within its Mathf library, which generates and returns a floating-point value in the range of 0.0 to 1.0.</p> 
+                <p>Perlin noise is a pseudo-random sequence of floating-point numbers generated across a two-dimensional plane. It's a type of gradient noise, making it well-suited to natural phenomena like the complex patterns of terrain. Unity conveniently incorporates a Perlin noise function within its Mathf library, generating and returning a floating-point value in the range of 0.0 to 1.0.</p> 
 
                 <p>The pseudo-random pattern generated by Perlin noise has a wide array of applications. Its strength lies in its ability to produce patterns that transition smoothly, thereby preventing abrupt changes. This makes Perlin noise an excellent choice for generating organic and natural-looking patterns.</p>
-                
-                
-                <h2>Generate texture</h2>
-                
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                
-                   <ol>
-                    <li>
-                     The first thing you need to do to install this app.
-                    </li>
-                    <br>
-                    <li>
-                    The second thing you need to do to install this app.
-                    </li>
-                    <br id="openingapp">
-                    <li>
-                     The app is installed now.
-                    </li>
-                    <br>
-                </ol>
+                                
+                <p id="Texture">On the first day, I worked on implementing the Perlin noise function in Unity. Unity has a built-in Perlin noise function in their Mathf library, which simplified the process. With the help of Unity's documentation and a few YouTube tutorials, I was able to get it working smoothly.</p>
+                                
+                <h2>Texture Generation</h2>
+                                
+                <p id="Res1">Creating a texture in Unity was a new experience for me, as I usually create them externally and import them. This was the first time I generated a texture using code in the Unity game engine.</p>
+
+                <p>Initially, I created a new 2D texture. Then, I looped through the pixels and set the color of each pixel, represented in an array the size of the texture. This color was set to the value of the Perlin noise at that point, as a gradient between black and white. Lastly, I used a function on the texture called "<b>SetPixels()</b>", which applies the color array to a texture where every pixel is set according to the provided array.</p>
+
+                <p>Afterwards, I set the material to a pre-created material. I could have created a new material just like the texture, but as I initially planned on generating only a small part of the terrain, this wasn't necessary. This allowed me to apply the material to a plane, which would then change according to the texture provided.</p>
+                                
+                <h2>Result</h2>
+
+                <p>By combining the Perlin noise with the texture generation, I was able to display the result on a plane mesh. The result can be seen in the video below:</p>
+
+                <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/RyVMr9w8p0A">
+                </iframe>
    
-            <div class="divider" style="width:24%; margin:30px 0;"></div>
+            <div id="Day2" class="divider" style="width:24%; margin:30px 0;"></div>
             
             
-                <h1>Day 2: Fractal Brownian Motion</h1>
+                <h1 id="FBM">Day 2: Fractal Brownian Motion</h1>
 
                 <h2>Fractal Brownian Motion</h2>
                 
-                <p id="basicfeatures">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                <p>Fractal Brownian Motion (FBM) is a technique that helps shape Perlin noise into something that can resemble a real landmass. In the previous sections <a href="#Res1">Result</a>, it's clear that the generated noise doesn't resemble the shapes of a natural landmass. This is where FBM comes in, resolving this issue by using three new variables to modify the shape of the noise. These parameters are as follows:
+                    <br><br>
+                    <b>Octaves</b>: Octaves, a term borrowed from music, represent different iterations of noise. In Fractal Brownian Motion (FBM), the number of octaves equates to the number of noise layers, each with a distinct frequency and amplitude.
+                    <br>
+                    <br>
+                    <b>Lacunarity</b>: Lacunarity, derived from the Latin word for gap, is used to create gaps between frequency variations caused by octaves. In FBM, lacunarity controls the frequency of each successive noise layer.
+                    <br>
+                    <br>
+                    <b>Persistence</b>: Persistence controls the change in amplitude between each successive octave.
+                    <br>
                 </p>
-                
+
+                <p>These three parameters are used to modify the amplitude and frequency of the noise, creating a more realistic landmass.</p>
+
+                <p id="Color">These changes are applied to the code generating the Perlin noise and can be modified in the inspector to create a landmass that can be varied according to the user's preference.</p>
+
                 <h2>Color</h2>
-                
-                <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                <br><br>
-                <b>Explanation 1</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <br>
-                <br>
-                <b>Explanation 2</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <br>
-                <br>
-                <b>Explanation 3</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                <br>
-                <br id="feature3">
-                <b>Explanation 4</b> Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                </p>
+                                
+                <p id="Issue1">Color is a feature that enhances the realism of the landmass. The color was added to the terrain by utilizing the numbers in the noise as the height of the terrain. To make this work, a new struct was created to hold the colors that should be applied to the terrain, and each color was assigned to a height in the terrain. This was then applied to the terrain in the same way as the texture was applied in the previous section. However, instead of using a gradient between black and white, the color was now determined by the list of the created struct for each color. The value set in the struct indicates the highest point that the color should be applied.</p>
+                                
+
+                <h2>Issue</h2>
+
+                <p id="Res2">There was one fairly obvious issue with the result shown in the next section. The top of the terrain sometimes turned black even though it should be white to represent the snow on the mountain tops. This also makes the noise in the black and white video not look as intended. This issue was not something I was able to resolve during this day, but it is something that I will look into the next day.</p>
+
+                <h2>Result</h2>
+
+                <p>The result of the second day can be seen in the videos below. The first video shows the look after adding just FBM, and the second shows the result after applying color.</p>
+                <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/U861Z6D2OWs">
+                </iframe>
+
+                <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/pMD7GkRZGwA">
+                </iframe>
             
                
-                <div class="divider" style="width:24%; margin:30px 0;"></div>
+                <div id="Day3" class="divider" style="width:24%; margin:30px 0;"></div>
                 
-                <h1>Day 3: Mesh rendering</h1>
-                
+                <h1 id="norm">Day 3: Mesh Rendering</h1>
+
+                <h2>Normalization (Resolved Issue from Day 2)</h2>
+
+                <p id="mesh">In the <a href="#Issue1">issue</a> from the previous day, I mentioned a problem with the color and noise not functioning correctly. This problem was due to the values in the noise map not being normalized. Previously, the values were set between -1 and 1 to achieve a greater variation in the noise. By normalizing the value before returning the generated noise map, the issue was resolved.</p>
+
                 <h2>Meshes in Unity</h2>
-                
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor 
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                <br>
-                <br id="featureb">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                   
-                
-                <h2>Meshes in Unity</h2>
-                
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                <br>
-                <br id="featurec">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                
-                
+
+                <p>In Unity, meshes are the foundation of 3D modeling, built using a network of polygons, specifically triangles. The creation of a mesh relies on the compilation of data across four distinct arrays: 
+                    <br><br>
+                    <b>Vertex Array:</b> This array holds the vertices, the fundamental points in 3D space that define the shape of the mesh.
+                    <br>
+                    <br>
+                    <b>Normal Array:</b> This array contains the normals, which are vectors perpendicular to the mesh surface, crucial for lighting calculations.
+                    <br>
+                    <br>
+                    <b>Triangle Array:</b> This array defines the triangles, the basic building blocks of the mesh, by referencing groups of three vertices in the vertex array.
+                    <br>
+                    <br>
+                    <b>Texture Coordinates (UVs) Array:</b> This array stores the UV coordinates, which map the 2D texture onto the 3D mesh.
+                    <br>
+                </p>
+
+                <p>To encapsulate this into a function, these arrays were set in a struct called "<b>MeshData</b>". The size of the array is determined based on the number of vertices that will be part of the mesh. The width and height are set to the width and height subtracted by one. This is then used to set the size of the arrays mentioned above.</p>
+
+                <p>The next step is to add the triangles which will be set to different indexes of the vertices that have now been initiated. These triangles must be built in a specific order as the order in which the indexes are added to a triangle will determine which side the mesh will render. For my solution, I chose the vertices and sent them in a clockwise order to render the mesh upwards. However, as the terrain is square and each square consists of two identical points, it was not necessary to create a function under <b>MeshData</b> that generates only one triangle. Instead, a function called "<b>AddQuad</b>" was added that instantly adds values to create a quad.</p>
+
+                <p id="genfromnoise">Finally, the mesh is created and the values are set to the mesh. This is done by creating a new mesh and setting the values of the mesh to the values of the struct "<b>MeshData</b>". This is done in a function inside of the struct called "<b>CreateMesh</b>".</p>
+
+                <h2>Generate from noise map</h2>
+
+                <p>Now that the program can generate a mesh, it's time to implement a function that takes the generated noise map and converts it into a mesh. To do this, we set the vertices, which are an array of <b>Vector3</b>, to increase the x-coordinate and z-coordinate according to an in x and y used for a loop. Then the height is determined by the value within the corresponding float in the noise map that was generated. However, this will result in an almost unnoticeable difference in height to the mesh as the values vary from 0 to 1. To solve this, a height multiplier is added and all noise values are multiplied by this number. Another variable that was added to further customize the height of the map was a height curve. This allows the program to change the intensity of height for different values. The main reason for this is to be able to keep the water flat instead of it looking like a pit.</p>
+
+                <p>During this loop, I also set the UVs, which are the coordinates of the texture that should be applied to the mesh. This is done by setting the x-coordinate to x(value in the loop) divided by width of the loop and the y-coordinate to y(value in the loop) divided by the height of the loop. This will apply the texture to the mesh in the same way as the noise map was generated.</p>
+
+                <p>Next, for each loop, we also add a quad to the mesh. This is done by adding the vertices to the mesh and then adding the triangles to the mesh. This is done by adding the triangles in a clockwise order to make the mesh render upwards. This is done by adding the triangles in the following order: 0, 1, 2, 2, 1, 3. This will make the mesh render upwards. We also increase "<b>vertexIndex</b>" for each value we go through in the loop to get the correct indexes for the quads.</p>
+
+                <p id="Res3">Lastly, the mesh is created and the values are set to the mesh. This is done by creating a new mesh and setting the values of the mesh to the values of the struct "<b>MeshData</b>". This is done in a function inside of the struct called "<b>CreateMesh</b>". Then, this is applied to a GameObject with the component "<b>MeshFilter</b>" which takes in a mesh.</p>
+
                 <h2>Result</h2>
+
+                <p>The result of the third day can be seen in the video below. The first video shows the mesh that is generated and the second video is where the normalization issue can be seen before it was fixed:</p>
                   
-                <p id="featurec1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/7xKHl0-wuFk">
+                </iframe>
+
+                <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/mzLhTlq3Ij4">
+                </iframe>
+
+                <div id="Day4" class="divider" style="width:24%; margin:30px 0;"></div>
+
+                <h1 id="LOD">Day 4: LOD</h1>
+
+                <h2>Level of Detail</h2>
+
+                <p>On the fourth day, I considered adding a Level of Detail (LOD) system to improve performance in case I decided to expand the project to endlessly generate terrain. This would also enable the creation of a lower polygon version, a style often used in games for its aesthetic appeal.</p>
+
+                <p>LOD is a technique where the quality of a mesh is reduced by decreasing the number of polygons (triangles) for objects that are further away from the camera. This helps avoid unnecessary performance usage for rendering objects that are not in the player's field of vision.</p>
+
+                <p>With the mesh function I created on <a href="Day3">Day 3</a>, it's a relatively straightforward task to implement a LOD system. The mesh is created from a square grid of vertices, so a simple solution is to skip these points when processing the noise map. Instead of incrementing x and y by 1, I increase them by the number of points that I want to skip. However, this approach can potentially deform the mesh if it can't end on a point at the mesh's boundary when the division isn't possible.</p>
+
+                <p>I resolved this issue by restricting the size of the mesh to a set size where the largest possible skip of vertices without deformation was possible, which in this case was 241x241. This allowed skipping up to 12 points without deforming the mesh.</p>
+
+                <p>Finally, integrating this feature into the code was not particularly challenging. First, I added a LOD variable ranging from 0 to 6 to the settings, which was then passed to the <b>MeshGenerator</b>. This was used to set the size of the arrays and the number of vertices that should be skipped. With these two simple additions and the restriction, it became possible to create more simplistic landmasses.</p>
+
+                <div id="Day5" class="divider" style="width:24%; margin:30px 0;"></div>
+
+                <h1>Day 5-6: Optimization</h1>
+
+                <p id="par">Over the next two days, I focused on optimizing, preparing, and cleaning up the code I had created, as the main components were already in place.</p>
+
+                <h2>Parallelization</h2>
+
+                <p>Parallelization is a technique used to expedite the noise map generation process. This is achieved by dividing the noise map into smaller parts and generating these parts concurrently. This is facilitated by the <b>Parallel</b> class in C#, which enables the use of multiple threads to generate the noise map.</p>
+
+                <p>This was the primary optimization added to the program. Each loop that could be parallelized was adjusted accordingly. However, due to Unity's mesh size limitations, the impact of this optimization is somewhat limited. Unity restricts meshes to a maximum of 65,535 vertices. Nevertheless, this optimization will allow the program to be expanded and work more efficiently with future improvements.</p>
+
+                <p id="prep">Unity also provides its own parallel function for parallelizing work. However, this only works during runtime as Unity does not permit access to this function while in the editor, which is the environment for which the program was designed.</p>
+
+                <h2>Preparations</h2>
+
+                <p>During this period, I set up some preparations for two potential expansions of this program: creating an endless landmass and adding natural objects (trees, bushes, etc.) to the landmass.</p>
+
+                <p>For the endless landmass, I prepared a system where the terrain would be generated in chunks. This would allow the program to generate only the terrain visible to the camera. These preparations involved adding functionality to build a new material for a newly instantiated GameObject, which is done if a GameObject is sent to the <b>DrawNoiseMap</b> function. This function renders the terrain based on the draw mode (noise map, color map, or mesh) set by the user.</p>
+
+                <p id="clean">For the natural objects, I created a new struct to hold the settings for these objects. This struct was then sent to the <b>DrawNoiseMap</b> function, which could use it to create the natural objects on the terrain. This was achieved by creating a new GameObject for each natural object and setting the object's position to the terrain's position. This was tested but proved too complex for the time I had left.</p>
+
+                <h2>Cleaning up</h2>
+
+                <p>The program started becoming fairly difficult to follow due to the various variables affecting the landmass. To address this issue, I created a new struct to hold the variables specifically for the terrain setting, which helped reduce the number of parameters being passed around between functions.</p>
+
+                <div id="Day7" class="divider" style="width:24%; margin:30px 0;"></div>
+
+                <h1 id="reshape">Day 7: Finalizing Touches</h1>
+
+                <h2>Reshapable Landmass Size</h2>
+
+                <p>Previously on <a href="LOD">Day 4</a>, I restricted the size of the landmass to a set value to simplify the setup of a Level of Detail (LOD). Today, I decided to make it work with varying sizes, as I wanted to provide the flexibility to reshape the landmass as desired.</p>
+
+                <p id="Res4">To enable a LOD with varying terrain sizes, I needed to add a calculation that triggers when the width or height changes. This was accomplished through Unity's "<b>OnValidation</b>" function, which is called when a variable is changed in the inspector. With this, it's possible to iterate through a loop to check if the number is divisible by that number. This isn't as taxing as it sounds, as I've already used the optimal size, which is an LOD of 6. We simply loop through, checking if the width and height can be divided by the LOD multiplied by 2 while counting. When this is no longer possible, we can break and use the count as a max LOD for that shape.</p>
+
+                <h2>Result</h2>
+                <p>Here is the final result of the project. The video below showcases all of the features that were implemented in the end:</p>
+
+                <iframe width="420" height="315"
+                src="https://www.youtube.com/embed/yJJ6oaNZ0wo">
+                </iframe>
 
                 <div class="doublespace"></div>
                 <div class="divider" style="width:24%; margin:30px 0;"></div>
